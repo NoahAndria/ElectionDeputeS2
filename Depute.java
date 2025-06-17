@@ -28,4 +28,8 @@ public class Depute {
     public void setDistrict(District district) {
         this.district = district;
     }
+    @Override
+public String toString() {
+    return this.name;
+}
 }

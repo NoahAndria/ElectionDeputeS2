@@ -4,12 +4,12 @@ public class Faritany {
     private String name;
     private Vector<Faritra> faritra;
 
-    Faritany(String name) {
+    public Faritany(String name) {
         this.name = name;
         this.faritra = new Vector<>();
     }
 
-    Faritany(String name, Vector<Faritra> faritra) {
+    public Faritany(String name, Vector<Faritra> faritra) {
         this.name = name;
         this.faritra = faritra;
     }
@@ -25,4 +25,8 @@ public class Faritany {
     public void setFaritra(Vector<Faritra> Faritra) {
         this.faritra = Faritra;
     }
+    @Override
+public String toString() {
+    return this.name;
+}
 }

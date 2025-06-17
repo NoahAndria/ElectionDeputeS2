@@ -3,11 +3,11 @@ import java.util.Vector;
 public class Faritra {
     String name;
     Vector<District> districts;
-    Faritra(String name) {
+    public Faritra(String name) {
         this.name = name;
         this.districts = new Vector<>();
     }
-    Faritra(String name, Vector<District> districts) {
+    public Faritra(String name, Vector<District> districts) {
         this.name = name;
         this.districts = districts;
     }
@@ -20,4 +20,8 @@ public class Faritra {
     public void setDistricts(Vector<District> districts) {
         this.districts = districts;
     }
+    @Override
+public String toString() {
+    return this.name;
+}
 }

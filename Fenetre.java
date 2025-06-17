@@ -8,18 +8,45 @@ public class Fenetre extends JFrame{
     private JComboBox<Faritany> faritanyComboBox;
     private JComboBox<Faritra> faritraComboBox;
     private JComboBox<District> districtComboBox;
+    private JComboBox<BureauVote> bureauVoteComboBox;
     private JComboBox<Depute> deputeComboBox;
+    private JTextField nbVoteComboBox;
 
-    Fenetre(Vector<Faritany> faritanyList) {
+    public Faritany getSelectedFaritany() {
+        return (Faritany) faritanyComboBox.getSelectedItem();
+    }
+    public Faritra getSelectedFaritra() {
+        return (Faritra) faritraComboBox.getSelectedItem();
+    }
+    public District getSelectedDistrict() {
+        return (District) districtComboBox.getSelectedItem();
+    }
+    public BureauVote getSelectedBureauVote() {
+        return (BureauVote) bureauVoteComboBox.getSelectedItem();
+    }
+    public Depute getSelectedDepute() {
+        return (Depute) deputeComboBox.getSelectedItem();
+    }
+    public String getNbVote() {
+        return nbVoteComboBox.getText();
+    }
+    public Fenetre(Vector<Faritany> faritanyList) {
         setTitle("Election Results");
         setSize(800, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
         faritanyComboBox = new JComboBox<>(faritanyList);
+        faritanyComboBox.addItem(null);
         faritraComboBox = new JComboBox<>();
+        faritraComboBox.addItem(null);
         districtComboBox = new JComboBox<>();
+        districtComboBox.addItem(null);
+        bureauVoteComboBox = new JComboBox<>();
+        bureauVoteComboBox.addItem(null);
         deputeComboBox = new JComboBox<>();
+        deputeComboBox.addItem(null);
+        nbVoteComboBox = new JTextField();
 
         faritanyComboBox.addActionListener(
             e -> {
@@ -29,6 +56,7 @@ public class Fenetre extends JFrame{
                     for(Faritra f : selected.getFaritra()) {
                         faritraComboBox.addItem(f);
                     }
+                    faritraComboBox.addItem(null);
                 }
             }
         );
@@ -42,6 +70,7 @@ public class Fenetre extends JFrame{
                     for(District d : selected.getDistricts()) {
                         districtComboBox.addItem(d);
                     }
+                    districtComboBox.addItem(null);
                 }
             }
         );
@@ -54,9 +83,16 @@ public class Fenetre extends JFrame{
                     for(Depute d : selected.getDeputes()) {
                         deputeComboBox.addItem(d);
                     }
+                    deputeComboBox.addItem(null);
+                    bureauVoteComboBox.removeAllItems();
+                    for(BureauVote b : selected.getBureaux()) {
+                        bureauVoteComboBox.addItem(b);
+                    }
+                    bureauVoteComboBox.addItem(null);
                 }
             }
         );
+
 
         add(new JLabel("Select Faritany:"));
         add(faritanyComboBox);
@@ -64,8 +100,13 @@ public class Fenetre extends JFrame{
         add(faritraComboBox);
         add(new JLabel("Select District:"));
         add(districtComboBox);
+        add(new JLabel("Select Bureau:"));
+        add(bureauVoteComboBox);
         add(new JLabel("Select Depute:"));
         add(deputeComboBox);
+        add(new JLabel("Number of Votes:"));
+        add(nbVoteComboBox);
+        JButton submitButton = new JButton("Submit");
 
         setVisible(true);
     }

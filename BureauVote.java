@@ -28,4 +28,8 @@ public class BureauVote {
     public int getVotes(Depute depute) {
         return resultats.getOrDefault(depute, 0);
     }
+    @Override
+public String toString() {
+    return this.name;
+}
 }
