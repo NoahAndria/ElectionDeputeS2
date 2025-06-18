@@ -4,17 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
-public class Fenetre extends JFrame{
+public class Classement extends JFrame{
+    private Vector<Faritany> faritany;
     private JComboBox<Faritany> faritanyComboBox;
     private JComboBox<Faritra> faritraComboBox;
     private JComboBox<District> districtComboBox;
     private JComboBox<BureauVote> bureauVoteComboBox;
-    private JComboBox<Depute> deputeComboBox;
-    private JTextField nbVoteComboBox;
+    private Dessin panel;
     JButton bouton ;
 
     public Faritany getSelectedFaritany() {
         return (Faritany) faritanyComboBox.getSelectedItem();
+    }
+    public Dessin getPanelDessin()
+    {
+        return this.panel;
     }
     public Faritra getSelectedFaritra() {
         return (Faritra) faritraComboBox.getSelectedItem();
@@ -25,24 +29,27 @@ public class Fenetre extends JFrame{
     public BureauVote getSelectedBureauVote() {
         return (BureauVote) bureauVoteComboBox.getSelectedItem();
     }
-    public Depute getSelectedDepute() {
-        return (Depute) deputeComboBox.getSelectedItem();
+    public Vector<Faritany> getFaritany() {
+        return this.faritany;
     }
-    public String getNbVote() {
-        return nbVoteComboBox.getText();
-    }
-    public Fenetre(Vector<Faritany> faritanyList) {
-        setTitle("Insert election results");
+    public Classement(Vector<Faritany> faritanyList) {
+        this.faritany = faritanyList;
+        setTitle("Election Results");
         setSize(1000, 600);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new FlowLayout());
 
+        panel = new Dessin(this);
+
         faritanyComboBox = new JComboBox<>(faritanyList);
+        faritanyComboBox.addItem(null);
         faritraComboBox = new JComboBox<>();
+        faritraComboBox.addItem(null);
         districtComboBox = new JComboBox<>();
+        districtComboBox.addItem(null);
         bureauVoteComboBox = new JComboBox<>();
-        deputeComboBox = new JComboBox<>();
-        nbVoteComboBox = new JTextField();
+        bureauVoteComboBox.addItem(null);
+
         bouton = new JButton("Send");
 
         faritanyComboBox.addActionListener(
@@ -50,6 +57,7 @@ public class Fenetre extends JFrame{
                 Faritany selected = (Faritany) faritanyComboBox.getSelectedItem();
                 if(selected != null){
                     faritraComboBox.removeAllItems();
+                    faritraComboBox.addItem(null);
                     for(Faritra f : selected.getFaritra()) {
                         faritraComboBox.addItem(f);
                     }
@@ -64,6 +72,7 @@ public class Fenetre extends JFrame{
                 if(selected != null)
                 {
                     districtComboBox.removeAllItems();
+                    districtComboBox.addItem(null);
                     for(District d : selected.getDistricts()) {
                         districtComboBox.addItem(d);
                     }
@@ -76,12 +85,10 @@ public class Fenetre extends JFrame{
             e -> {
                 District selected = (District) districtComboBox.getSelectedItem();
                 if(selected != null) {
-                    deputeComboBox.removeAllItems();
-                    for(Depute d : selected.getDeputes()) {
-                        deputeComboBox.addItem(d);
-                    }
+
                     
                     bureauVoteComboBox.removeAllItems();
+                    bureauVoteComboBox.addItem(null);
                     for(BureauVote b : selected.getBureaux()) {
                         bureauVoteComboBox.addItem(b);
                     }
@@ -91,26 +98,25 @@ public class Fenetre extends JFrame{
         );
 
         // setLayout(BorderLayout(3,3,10,10));
+        JPanel head = new JPanel();
         add(new JLabel("Select Faritany:"));
-        add(faritanyComboBox);
+        head.add(faritanyComboBox);
         add(new JLabel("Select Faritra:"));
-        add(faritraComboBox);
+        head.add(faritraComboBox);
         add(new JLabel("Select District:"));
-        add(districtComboBox);
+        head.add(districtComboBox);
         add(new JLabel("Select Bureau:"));
-        add(bureauVoteComboBox);
-        add(new JLabel("Select Depute:"));
-        add(deputeComboBox);
-        add(new JLabel("Number of Votes:"));
-        nbVoteComboBox.setPreferredSize(new Dimension(50, 30));
-        nbVoteComboBox.setMaximumSize(new Dimension(50,30));
-        add(nbVoteComboBox);
+        head.add(bureauVoteComboBox);
 
         bouton.setPreferredSize(new Dimension(70, 40));
         bouton.setMaximumSize(new Dimension(70,40));
-        bouton.addMouseListener(new Listener1(this));
-        add(bouton);
+        bouton.addMouseListener(new Listener2(this));
+        head.add(bouton);
         JButton submitButton = new JButton("Submit");
+
+        setLayout(new BorderLayout());
+        add(head, BorderLayout.NORTH);
+        add(panel, BorderLayout.CENTER);
 
         setVisible(true);
     }

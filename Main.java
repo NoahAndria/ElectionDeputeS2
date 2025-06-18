@@ -7,82 +7,80 @@ public class Main {
     public static void main(String[] args) {
         
 // < --------- Declaration des bureaux et les mettre dans un groupe -------------->
-        BureauVote bureau1 = new BureauVote("Bureau 1");
-        BureauVote bureau2 = new BureauVote("Bureau 2");
-        BureauVote bureau3 = new BureauVote("Bureau 3");
-        BureauVote bureau4 = new BureauVote("Bureau 4");
-        BureauVote bureau5 = new BureauVote("Bureau 5");
 
-        Vector<BureauVote> bureauxG1 = new Vector<>();
-        bureauxG1.add(bureau1);
-        bureauxG1.add(bureau2);
 
-        Vector<BureauVote> bureauxG2 = new Vector<>();
-        bureauxG2.add(bureau3);
+        BureauVote bv1 = new BureauVote("BV101");
+        BureauVote bv2 = new BureauVote("BV102");
+        BureauVote bv3 = new BureauVote("BV201");
+        BureauVote bv4 = new BureauVote("BV202");
+        BureauVote bv5 = new BureauVote("BV301");
+        BureauVote bv6 = new BureauVote("BV302");
+        Vector<BureauVote> gro1 = new Vector<BureauVote>();
+        gro1.add(bv1); gro1.add(bv2);
 
-        Vector<BureauVote> bureauxG3 = new Vector<>();
-        bureauxG3.add(bureau4);
+               Vector<BureauVote> gro2 = new Vector<BureauVote>();
+        gro2.add(bv3); gro2.add(bv4);
 
-        Vector<BureauVote> bureauxG4 = new Vector<>();
-        bureauxG4.add(bureau5);
-    
-// < --------- Declaration des deputes et les mettre dans un groupe -------------->
-        Depute depute1 = new Depute("John Doe");
-        Depute depute2 = new Depute("Jane Smith");
-        Depute depute3 = new Depute("Alice Johnson");
-        Depute depute4 = new Depute("Bob Brown");
-        Depute depute5 = new Depute("Charlie Davis");
-        Depute depute6 = new Depute("Diana Evans");
-        Depute depute7 = new Depute("Ethan Green");
-        Depute depute8 = new Depute("Fiona Harris");
 
-        Vector<Depute> deputesG1 = new Vector<>();
-        deputesG1.add(depute1);
-        deputesG1.add(depute2);
+               Vector<BureauVote> gro3 = new Vector<BureauVote>();
+        gro3.add(bv5); gro3.add(bv6);
 
-        Vector<Depute> deputesG2 = new Vector<>();
-        deputesG2.add(depute3);
-        deputesG2.add(depute4);
+        Depute D1 = new Depute("C1");
+        Depute D2 = new Depute("C2");
+        Depute D3 = new Depute("C3");
+        Depute D4 = new Depute("C4");
+        Depute D5 = new Depute("C5");
+        Depute D6 = new Depute("C6");
 
-        Vector<Depute> deputesG3 = new Vector<>();
-        deputesG3.add(depute5);
-        deputesG3.add(depute6);
+        Vector<Depute> gr1 = new Vector<Depute>();
+        gr1.add(D1);
+         gr1.add(D2);
+          
+                  Vector<Depute> gr2 = new Vector<Depute>();
+        gr2.add(D3);
+         gr2.add(D4);
 
-        Vector<Depute> deputesG4 = new Vector<>();
-        deputesG4.add(depute7);
-        deputesG4.add(depute8);
+                 Vector<Depute> gr3 = new Vector<Depute>();
+        gr3.add(D5);
+         gr3.add(D6);
 
-        //  < --------- Declaration des districts et les mettre dans un groupe -------------->
+        District DI1 = new District(gr1, gro1, "Ampitatafika", 1);
+        District DI2 = new District(gr2, gro2, "Ambohimena", 2);
+        District DI3 = new District(gr3, gro3, "Ampitatafika", 2);
 
-        District district1 = new District(deputesG1, bureauxG1, "District 1", 1);
-        District district2 = new District(deputesG2, bureauxG2, "District 2", 1);
-        District district3 = new District(deputesG3, bureauxG3, "District 3", 1);
-        District district4 = new District(deputesG4, bureauxG4, "District 4", 1);
+        Vector<District> add1 = new Vector<District>();
+        add1.add(DI1);
 
-        Vector<District> districtsG1 = new Vector<>();
-        districtsG1.add(district1);
-        districtsG1.add(district2);
-        Vector<District> districtsG2 = new Vector<>();
-        districtsG2.add(district3);
-        Vector<District> districtsG3 = new Vector<>();
-        districtsG3.add(district4);
+                Vector<District> add2 = new Vector<District>();
+        add2.add(DI2);
 
-        // < --------- Declaration des faritra et les mettre dans un groupe -------------->
+                Vector<District> add3 = new Vector<District>();
+        add3.add(DI3);
+        Faritra FA1 = new Faritra("Antananarivo Antsimodrano", add1);
+        Faritra FA2 = new Faritra("Antsirabe", add2);
+        Faritra FA3 = new Faritra("Toamasina", add3);
 
-        Faritra faritra1 = new Faritra("Faritra 1", districtsG1);
-        Faritra faritra2 = new Faritra("Faritra 2", districtsG2);
-        Faritra faritra3 = new Faritra("Faritra 3", districtsG3);
-        Vector<Faritra> faritras = new Vector<>();
-        faritras.add(faritra1);
-        faritras.add(faritra2);
-        faritras.add(faritra3);
+        Vector<Faritra> addf1 = new Vector<Faritra>();
+        addf1.add(FA1);
 
-        // < --------- Declaration des faritany et les mettre dans un groupe -------------->
-        Faritany faritany1 = new Faritany("Faritany 1", faritras);
-        Vector<Faritany> faritanys = new Vector<>();
-        faritanys.add(faritany1);
-        Fenetre f = new Fenetre(faritanys);
-        f.setVisible(true);
+                Vector<Faritra> addf2 = new Vector<Faritra>();
+        addf2.add(FA2);
 
-    }
+                Vector<Faritra> addf3 = new Vector<Faritra>();
+        addf3.add(FA3);
+
+        Faritany FART1 = new Faritany("Analamanga",addf1);
+        Faritany FART2 = new Faritany("Vakinankaratra",addf2);
+        Faritany FART3 = new Faritany("Antsinanana",addf3);
+
+                Vector<Faritany> addf = new Vector<Faritany>();
+        addf.add(FART1);
+        addf.add(FART2);
+        addf.add(FART3);
+
+
+        Classement c = new Classement(addf);
+        Fenetre f = new Fenetre(addf);
+
+     }
 }

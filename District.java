@@ -7,6 +7,7 @@ public class District{
     int nombreElus;
     Vector<Depute> deputes;
     Vector<BureauVote> bureaux;
+    
     public District(String name, int nombreElus) {
         this.name = name;
         this.nombreElus = nombreElus;
@@ -32,6 +33,9 @@ public class District{
     }
     public Vector<Depute> getDeputes() {
         return deputes;
+    }
+        public int getnombreElus() {
+        return nombreElus;
     }
     public void addDepute(Depute depute) {
         deputes.add(depute);

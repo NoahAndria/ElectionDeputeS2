@@ -6,7 +6,8 @@ public class Depute {
     private String name;
     private Depute second;
     private District district;
-    Depute(String name) {
+    
+    public Depute(String name) {
         this.name = name;
         
         this.second = null; 
